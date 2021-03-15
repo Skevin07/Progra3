@@ -1,54 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<!-- CSS only -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Datos</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
 </head>
 <body>
-	<h1>Welcome</h1>
+	<div class="container ">
+		<div class="row margen">
+			<div class="col-md-12">
+				<div class="panel panel-default sombra">
+					<div class="panel-body">
+						<div class="centrar">
+							<h1></h1>
+							<script type="text/javascript">
+			  					$(document).ready(function (){
+		  							$.post('ControllerMostrarInformacion',{
+		  								
+		  							}, function (response){		  							
+		  								let datos = JSON.parse(response);
+		  								console.log(datos);
+		  								var tabla = document.getElementById('tablaDatos');
+		  								for(let item of datos){
+		  									
+		  									tabla.innerHTML += `
+		  										<tr>
+		  											<td> ${item.idUsuario} </td>
+		  											<td> ${item.Usuario} </td>
+		  											<td> ${item.Pass} </td>
+		  											<td> <a href="ControllerMostrarInformacion?usu=${item.idUsuario}" class="btn btn-warning">Actualizar </td>
+		  											<td> <a name="usu" href="ControllerMostrarInformacion?usu=${item.idUsuario}" class="btn btn-danger">Eliminar </td>
+		  										</tr>	  																
+		  									`	  									
+		  									console.log(item.Pass);
+		  								}
+		  							});
+		  						});
+			  				</script>
+							<table id="tablaDatos" class="table table-striped">
+								<thead>
+									<tr>
+										<th>IdUsuario</th>
+										<th>Usuario</th>
+										<th>Password</th>
+										<th colspan="2">Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$.post('ControllerMostrarInformacion', {
-			//para enviar
-			}, function(response) {
-				//para recibir
-				let datos = JSON.parse(response);
-
-				console.log(datos);
-
-			});
-		});
-	</script>
-	<table class="table">
-  
-  <tbody>
-    <tr class="table-active">
-      ...
-    </tr>
-    <tr>
-      ...
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2" class="table-active">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-	
-	
-
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

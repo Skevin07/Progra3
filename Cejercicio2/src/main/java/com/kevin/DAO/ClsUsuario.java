@@ -31,10 +31,23 @@ public class ClsUsuario {
 	            }
 	        } catch (Exception e) {
 	        	
-	            //JOptionPane.showMessageDialog(null, "Ha ocurrido un error en: \n\n\n\n" + e);
+	        	System.out.println("No cargaron los Usuarios "+e);
 	        }
 
 	        return Lista;
 	    }
-	
+	 
+	public void Eliminar (usuario user) {
+		
+		try {
+			CallableStatement statement= con.prepareCall("call sp_d_user(?)");
+			statement.setInt("pIdUsuario", user.getIdUsuario());
+			statement.executeQuery();
+			System.out.println("Exito");
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			// TODO: handle exception
+		}
+	}
 }

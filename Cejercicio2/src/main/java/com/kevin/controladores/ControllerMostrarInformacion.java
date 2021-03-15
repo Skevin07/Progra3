@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kevin.DAO.ClsUsuario;
+import com.kevin.entidades.usuario;
 
 /**
  * Servlet implementation class ControllerMostrarInformacion
@@ -30,7 +31,16 @@ public class ControllerMostrarInformacion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ClsUsuario clsusu = new ClsUsuario();
+		
+		usuario usu = new usuario();
+		
+		usu.setIdUsuario(Integer.parseInt(request.getParameter("usu")));
+		clsusu.Eliminar(usu);
+		response.sendRedirect("Saludo.jsp");
+		
+		
 	}
 
 	/**
