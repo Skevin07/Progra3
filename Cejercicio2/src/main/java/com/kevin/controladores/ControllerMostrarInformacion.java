@@ -32,14 +32,42 @@ public class ControllerMostrarInformacion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ClsUsuario clsusu = new ClsUsuario();
+		String Evaluar = request.getParameter("Eliminar");
+		
+		String agregando = request.getParameter("Guardar");
+		String Idusuario = request.getParameter("IdUsuario");
+		String usuario = request.getParameter("usuario");
+		String password = request.getParameter("Pass");
 		
 		usuario usu = new usuario();
+		ClsUsuario clsusu = new ClsUsuario();
 		
-		usu.setIdUsuario(Integer.parseInt(request.getParameter("usu")));
-		clsusu.Eliminar(usu);
-		response.sendRedirect("Saludo.jsp");
 		
+		if(Evaluar!=null) {
+			if(Evaluar.equals("btne")) {
+				
+				usu.setIdUsuario(Integer.parseInt(request.getParameter("usu")));
+				clsusu.Eliminar(usu);
+				response.sendRedirect("Saludo.jsp");
+			}
+			
+		}else if (agregando.equals("btna")) {
+			
+			usu.setUsuario(usuario);
+			usu.setPass(password);
+			usu.setIdTipoUsuario(1);
+			System.out.print(Idusuario);
+			
+			if(Idusuario==""||Idusuario==null) {
+				
+				clsusu.AgregarUsuario(usu);
+				response.sendRedirect("saludo.jsp");
+			}else {
+				usu.setIdUsuario(Integer.parseInt(Idusuario));
+				clsusu.ActualizarUsuario(usu);
+				response.sendRedirect("saludo.jsp");
+			}
+		}
 		
 	}
 

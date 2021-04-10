@@ -36,15 +36,17 @@
 		  											<td> ${item.idUsuario} </td>
 		  											<td> ${item.Usuario} </td>
 		  											<td> ${item.Pass} </td>
-		  											<td> <a href="ControllerMostrarInformacion?usu=${item.idUsuario}" class="btn btn-warning">Actualizar </td>
-		  											<td> <a name="usu" href="ControllerMostrarInformacion?usu=${item.idUsuario}" class="btn btn-danger">Eliminar </td>
-		  										</tr>	  																
-		  									`	  									
+		  											<td> <a href="ControllerMostrarInformacion?IdUsuario=${item.idUsuario}&Eliminar=btne" class="btn btn-danger	">Eliminar </td>
+		  											<a href="add.jsp?Id=${item.idUsuario}&Usuario=${item.Usuario}&Pass=${item.Pass}" class="btn btn-warning">Actualizar </a>
+		  										</tr>																
+		  									`	  								
 		  									console.log(item.Pass);
 		  								}
 		  							});
 		  						});
 			  				</script>
+			  				
+			  				<a href ="add.jsp" class="btn btn-primary">Agregar</a>		  				
 							<table id="tablaDatos" class="table table-striped">
 								<thead>
 									<tr>
