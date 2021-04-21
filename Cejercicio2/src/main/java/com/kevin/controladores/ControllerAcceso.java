@@ -48,17 +48,15 @@ public class ControllerAcceso extends HttpServlet {
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		
-		Loguin log = new Loguin();
+		usuario log = new usuario();
 		clsLoguin clsL = new clsLoguin();
-		log.setUser(user);
+		log.setUsuario(user);
 		log.setPass(pass);
 		
 		 int valordeacceso = clsL.acceso(log);
 		 
 		 if (valordeacceso==1) {
-			
 			 System.out.println("Welcome");
-			 
 			 ClsUsuario cls = new ClsUsuario();
 			 ArrayList<usuario> clsuser = new ArrayList<>();
 			 
@@ -71,7 +69,13 @@ public class ControllerAcceso extends HttpServlet {
 			 
 			 response.sendRedirect("Saludo.jsp");
 			 
-		}else {
+			 
+		}else if (valordeacceso==2){
+			
+			System.out.println("Usuario Normal");
+			response.sendRedirect("standard.jsp");
+			
+		}else{
 			
 			System.out.println("ERROR");
 			 response.sendRedirect("Error.jsp");

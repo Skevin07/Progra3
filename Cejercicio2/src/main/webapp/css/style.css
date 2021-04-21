@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+
+.margen {
+	margin-top: 5%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: linear-gradient(to right, #3D1D4B, #4215C4);
+}
+
+h1 {
+	text-align: center;
+}
+
+.box {
+	width: 50%;
+	padding: 40px;
+	position: absolute;
+	left: 30%;
+	top: 10%;
+	background: #191919;
+	border-radius: 5px;
+	text-align: center;
+	transition: 0.25%;
+	margin-top: 10%;
+}

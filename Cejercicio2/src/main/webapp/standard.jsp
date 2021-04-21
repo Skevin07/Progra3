@@ -19,7 +19,7 @@
 					<thead>
 						<tr>
 							<th colspan="3">
-							<h1>ERROR EN LOS DATOS</h1>
+							Usuario Normal
 							</th>
 						</tr>
 					</thead>
