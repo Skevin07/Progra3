@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sound.midi.Soundbank;
 
 import com.kevin.DAO.ClsUsuario;
@@ -44,12 +45,21 @@ public class ControllerAcceso extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		HttpSession session = request.getSession(true);
+		
+		String btncerrar = request.getParameter("btncerrar");
+		response.sendRedirect("index.jsp");
+		session.invalidate();
+		
+		
+		
 		
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		
 		usuario log = new usuario();
 		clsLoguin clsL = new clsLoguin();
+		
 		log.setUsuario(user);
 		log.setPass(pass);
 		
@@ -59,6 +69,8 @@ public class ControllerAcceso extends HttpServlet {
 			 System.out.println("Welcome");
 			 ClsUsuario cls = new ClsUsuario();
 			 ArrayList<usuario> clsuser = new ArrayList<>();
+			 response.sendRedirect("Saludo,jsp");
+			 session.setAttribute("usuario", valordeacceso);
 			 
 			for(var iteracion:cls.ListadoUSUARIOS()) {			
 				System.out.println("idUsuario");
